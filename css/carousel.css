@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: #ffd6e2;
+    color: #8f2949;
+    font-family: Arial, sans-serif;
+}
+
+.floating-hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -48px;
+    color: rgba(218, 65, 111, 0.45);
+    animation: float-up linear infinite;
+}
+
+@keyframes float-up {
+    from {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+    15% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-115vh) rotate(28deg);
+    }
+}
+
+.page-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #a82952;
+    font-size: clamp(28px, 5vw, 44px);
+    text-align: center;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.7);
+}
+
+.carousel {
+    position: relative;
+    width: min(88vw, 720px);
+    height: min(70vh, 600px);
+    overflow: hidden;
+    border: 8px solid rgba(255, 255, 255, 0.75);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.38);
+    box-shadow: 0 14px 36px rgba(152, 50, 84, 0.24);
+}
+
+.carousel-track {
+    height: 100%;
+}
+
+.carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    animation: slide-fade 0.55s ease;
+}
+
+.carousel-slide.is-active {
+    display: block;
+}
+
+.carousel-slide img,
+.carousel-slide video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes slide-fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    color: #a82952;
+    background: rgba(255, 255, 255, 0.82);
+    cursor: pointer;
+    font-size: 24px;
+    transform: translateY(-50%);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-control:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.previous {
+    left: 14px;
+}
+
+.next {
+    right: 14px;
+}
+
+.carousel-status {
+    margin-top: 14px;
+    color: #8f2949;
+    font-size: 15px;
+    font-weight: bold;
+}
