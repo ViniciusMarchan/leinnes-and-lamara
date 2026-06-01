@@ -52,11 +52,28 @@ body {
 }
 
 h1 {
+    min-height: 53px;
     margin-bottom: 20px;
     color: #a82952;
     font-size: clamp(28px, 5vw, 44px);
     text-align: center;
     text-shadow: 0 2px 0 rgba(255, 255, 255, 0.7);
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    margin-left: 5px;
+    background: #a82952;
+    vertical-align: -0.08em;
+    animation: cursor-blink 0.75s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 .carousel {
@@ -87,10 +104,10 @@ h1 {
 .carousel-slide img,
 .carousel-slide video {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 328px;
+    height: 488px;
     border-radius: 14px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 @keyframes gallery-scroll {
@@ -100,4 +117,11 @@ h1 {
     to {
         transform: translateX(-50%);
     }
+}
+
+.gallery-audio {
+    width: min(92vw, 360px);
+    margin-top: 18px;
+    opacity: 0.78;
+    display: none;
 }

@@ -21,6 +21,37 @@ const mediaFiles = [
 ];
 
 const track = document.querySelector(".carousel-track");
+const typingText = document.querySelector(".typing-text");
+const messages = [
+    "Feliz Aniversário!",
+    "Eu te amo!",
+    "Você é especial para mim"
+];
+let messageIndex = 0;
+let characterIndex = 0;
+let isDeleting = false;
+
+function animateTitle() {
+    const currentMessage = messages[messageIndex];
+
+    characterIndex += isDeleting ? -1 : 1;
+    typingText.textContent = currentMessage.slice(0, characterIndex);
+
+    if (!isDeleting && characterIndex === currentMessage.length) {
+        isDeleting = true;
+        setTimeout(animateTitle, 1800);
+        return;
+    }
+
+    if (isDeleting && characterIndex === 0) {
+        isDeleting = false;
+        messageIndex = (messageIndex + 1) % messages.length;
+        setTimeout(animateTitle, 450);
+        return;
+    }
+
+    setTimeout(animateTitle, isDeleting ? 45 : 90);
+}
 
 function createSlide(fileName) {
     const slide = document.createElement("div");
@@ -66,3 +97,4 @@ mediaFiles.concat(mediaFiles).forEach((fileName) => {
 });
 
 createFloatingHearts();
+animateTitle();
