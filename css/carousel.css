@@ -61,8 +61,8 @@ h1 {
 
 .carousel {
     position: relative;
-    width: min(88vw, 720px);
-    height: min(70vh, 600px);
+    width: min(94vw, 1700px);
+    height: 500px;
     overflow: hidden;
     border: 8px solid rgba(255, 255, 255, 0.75);
     border-radius: 24px;
@@ -71,18 +71,17 @@ h1 {
 }
 
 .carousel-track {
+    display: flex;
     height: 100%;
+    width: max-content;
+    animation: gallery-scroll 95s linear infinite;
 }
 
 .carousel-slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-    animation: slide-fade 0.55s ease;
-}
-
-.carousel-slide.is-active {
-    display: block;
+    flex: 0 0 340px;
+    width: 340px;
+    height: 500px;
+    padding: 6px;
 }
 
 .carousel-slide img,
@@ -90,48 +89,15 @@ h1 {
     display: block;
     width: 100%;
     height: 100%;
+    border-radius: 14px;
     object-fit: contain;
 }
 
-@keyframes slide-fade {
+@keyframes gallery-scroll {
     from {
-        opacity: 0;
+        transform: translateX(0);
     }
     to {
-        opacity: 1;
+        transform: translateX(-50%);
     }
-}
-
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    color: #a82952;
-    background: rgba(255, 255, 255, 0.82);
-    cursor: pointer;
-    font-size: 24px;
-    transform: translateY(-50%);
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.carousel-control:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.08);
-}
-
-.previous {
-    left: 14px;
-}
-
-.next {
-    right: 14px;
-}
-
-.carousel-status {
-    margin-top: 14px;
-    color: #8f2949;
-    font-size: 15px;
-    font-weight: bold;
 }

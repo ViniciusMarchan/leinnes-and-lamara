@@ -21,8 +21,6 @@ const mediaFiles = [
 ];
 
 const track = document.querySelector(".carousel-track");
-const status = document.querySelector(".carousel-status");
-let currentSlide = 0;
 
 function createSlide(fileName) {
     const slide = document.createElement("div");
@@ -33,7 +31,10 @@ function createSlide(fileName) {
     media.src = `images/carrossel/${fileName}`;
 
     if (isVideo) {
-        media.controls = true;
+        media.autoplay = true;
+        media.loop = true;
+        media.muted = true;
+        media.playsInline = true;
         media.preload = "metadata";
     } else {
         media.alt = "Nosso momento";
@@ -42,21 +43,6 @@ function createSlide(fileName) {
 
     slide.appendChild(media);
     return slide;
-}
-
-function showSlide(index) {
-    const slides = document.querySelectorAll(".carousel-slide");
-    const activeVideo = document.querySelector(".carousel-slide.is-active video");
-
-    if (activeVideo) {
-        activeVideo.pause();
-    }
-
-    currentSlide = (index + slides.length) % slides.length;
-    slides.forEach((slide, slideIndex) => {
-        slide.classList.toggle("is-active", slideIndex === currentSlide);
-    });
-    status.textContent = `${currentSlide + 1} / ${slides.length}`;
 }
 
 function createFloatingHearts() {
@@ -75,26 +61,8 @@ function createFloatingHearts() {
     }
 }
 
-mediaFiles.forEach((fileName) => {
+mediaFiles.concat(mediaFiles).forEach((fileName) => {
     track.appendChild(createSlide(fileName));
 });
 
-document.querySelector(".previous").addEventListener("click", () => {
-    showSlide(currentSlide - 1);
-});
-
-document.querySelector(".next").addEventListener("click", () => {
-    showSlide(currentSlide + 1);
-});
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") {
-        showSlide(currentSlide - 1);
-    }
-    if (event.key === "ArrowRight") {
-        showSlide(currentSlide + 1);
-    }
-});
-
 createFloatingHearts();
-showSlide(0);
