@@ -26,6 +26,19 @@ body {
     animation: float-up linear infinite;
 }
 
+.floating-message {
+    position: absolute;
+    bottom: -70px;
+    max-width: 240px;
+    color: rgba(143, 41, 73, 0.68);
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+    animation: float-message-up linear infinite;
+}
+
 @keyframes float-up {
     from {
         opacity: 0;
@@ -37,6 +50,21 @@ body {
     to {
         opacity: 0;
         transform: translateY(-115vh) rotate(28deg);
+    }
+}
+
+@keyframes float-message-up {
+    from {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    18%,
+    78% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-115vh);
     }
 }
 
@@ -91,7 +119,7 @@ h1 {
     display: flex;
     height: 100%;
     width: max-content;
-    animation: gallery-scroll 95s linear infinite;
+    will-change: transform;
 }
 
 .carousel-slide {
@@ -108,15 +136,6 @@ h1 {
     height: 488px;
     border-radius: 14px;
     object-fit: cover;
-}
-
-@keyframes gallery-scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
 }
 
 .gallery-audio {
